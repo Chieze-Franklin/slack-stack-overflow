@@ -6,18 +6,6 @@ const request = require('request-promise-native')
 const app = new Express()
 app.use(bodyParser.urlencoded({extended: true}))
 
-/*const {SLACK_TOKEN: slackToken, REBRANDLY_APIKEY: apiKey, PORT} = process.env
-
-if (!slackToken || !apiKey) {
-  console.error('missing environment variables SLACK_TOKEN and/or REBRANDLY_APIKEY')
-  process.exit(1)
-}*/
-
-//const port = 80
-
-//const rebrandlyClient = createShortUrlsFactory(apiKey)
-//const slashCommand = slashCommandFactory(rebrandlyClient, slackToken)
-
 app.post('/', (req, res) => {
 
   if (req.body.command === '/so') {
@@ -25,15 +13,18 @@ app.post('/', (req, res) => {
 
     soClient(req.body.text)
     .then((response) => {
-      const items = response.items;
-      let attachments =
-      items.map((item) => {
+      const items = response.items; 
+      if (items.length > 100) {//slack does not allow more than 100 attachments
+        items = items.splice(100);
+      }
+      let attachments = items.map((item) => {
         return {
           color: 'good',
           text: `[${item.title}](${item.link})`,
           mrkdwn_in: ['text']
         };
       });
+
       request({
         url: req.body.response_url,
         method: "POST",
@@ -44,7 +35,7 @@ app.post('/', (req, res) => {
         resolveWithFullResponse: true
       })
       .catch((err)=>{
-        console.log("from slack:")
+        console.log("error from slack:")
         console.log(err)
       })
     })
@@ -53,5 +44,5 @@ app.post('/', (req, res) => {
 
 let server = app.listen(process.env.PORT || 5000, () => {
   let port = server.address().port;
-  console.log(`Server started at localhost:${port}`)
+  console.log(`Server started on port ${port}`)
 })
