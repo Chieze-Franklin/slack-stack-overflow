@@ -20,8 +20,9 @@ app.post('/', (req, res) => {
       let attachments = items.map((item) => {
         return {
           color: 'good',
-          text: `[${item.title}](${item.link})`,
-          mrkdwn_in: ['text']
+          title: item.title,
+          title_link: item.link,
+          text: item.link
         };
       });
       if (items.length === 0) {
