@@ -24,6 +24,12 @@ app.post('/', (req, res) => {
           mrkdwn_in: ['text']
         };
       });
+      if (items.length === 0) {
+        attachments = [{
+          color: 'danger',
+          text: 'No result found!'
+        }];
+      }
 
       request({
         url: req.body.response_url,
