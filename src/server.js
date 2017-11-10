@@ -28,7 +28,8 @@ app.post('/', (req, res) => {
       if (items.length === 0) {
         attachments = [{
           color: 'danger',
-          text: 'No result found!'
+          title: 'No result found!',
+          text: 'Consider rephrasing your request. For instance, make the request shorter by using only key words.'
         }];
       }
 
