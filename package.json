@@ -4,7 +4,7 @@
   "description": "Slack command /hlp",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/server",
+    "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chieze Franklin",
