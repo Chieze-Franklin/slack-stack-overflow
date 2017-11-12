@@ -2,7 +2,7 @@
 so-client simply makes a request to the Stack Exchange API (http://api.stackexchange.com/docs)
 */
 
-const request = require('request-promise-native')
+const request = require('request-promise-native');
 
 const soClient = (question) => {
     const q = encodeURIComponent(question);

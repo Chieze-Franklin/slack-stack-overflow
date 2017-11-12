@@ -1,14 +1,10 @@
-const Express = require('express')
-const bodyParser = require('body-parser')
-const soClient = require('./so-client')
-const request = require('request-promise-native')
+const Express = require('express');
+const bodyParser = require('body-parser');
+const soClient = require('./so-client');
+const request = require('request-promise-native');
 
-const app = new Express()
-app.use(bodyParser.urlencoded({extended: true}))
-
-app.get('/', (req, res) => {
-  res.send("Stack on Slack")
-});
+const app = new Express();
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/', (req, res) => {
 
@@ -75,6 +71,10 @@ app.post('/', (req, res) => {
     })
   }
 })
+
+app.use('*', (req, res) => {
+  res.redirect('https://github.com/Chieze-Franklin/stack-on-slack');
+});
 
 let server = app.listen(process.env.PORT || 5000, () => {
   let port = server.address().port;
