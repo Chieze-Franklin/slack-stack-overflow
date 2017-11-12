@@ -6,9 +6,13 @@ const request = require('request-promise-native')
 const app = new Express()
 app.use(bodyParser.urlencoded({extended: true}))
 
+app.get('/', (req, res) => {
+  res.send("Stack on Slack")
+});
+
 app.post('/', (req, res) => {
 
-  if (req.body.command === '/so') {//confirm token
+  if (req.body.token === process.env.SLACK_VERIFICATION_TOKEN) {//confirm token
     res.status(200).send('Handling your request...');
 
     soClient(req.body.text)
