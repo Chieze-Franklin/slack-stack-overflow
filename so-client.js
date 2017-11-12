@@ -8,11 +8,11 @@ const soClient = (question) => {
     const q = encodeURIComponent(question);
     return new Promise((resolve, reject) => {
         request({
-            url: "http://api.stackexchange.com/2.2/search?page=1&order=desc&sort=activity&intitle=" + q + "&site=stackoverflow",
+            url: 'http://api.stackexchange.com/2.2/search?page=1&order=desc&sort=activity&intitle=" + q + "&site=stackoverflow',
             method: "GET",
             gzip: true, //stack overflow returns responses that are gzip encoded
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             },
             resolveWithFullResponse: true
         })
@@ -21,7 +21,7 @@ const soClient = (question) => {
             resolve(result);
         })
         .catch((err) => {
-            resolve(new Error("Something is wrong"));
+            resolve(new Error('something went wrong'));
         })
     });
 };
