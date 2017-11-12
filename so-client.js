@@ -8,8 +8,8 @@ const soClient = (question) => {
     const q = encodeURIComponent(question);
     return new Promise((resolve, reject) => {
         request({
-            url: 'http://api.stackexchange.com/2.2/search?page=1&order=desc&sort=activity&intitle=" + q + "&site=stackoverflow',
-            method: "GET",
+            url: 'http://api.stackexchange.com/2.2/search?page=1&order=desc&sort=activity&intitle=' + q + '&site=stackoverflow',
+            method: 'GET',
             gzip: true, //stack overflow returns responses that are gzip encoded
             headers: {
                 'Content-Type': 'application/json'

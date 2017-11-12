@@ -24,8 +24,12 @@ app.post('/', (req, res) => {
       else if (response.items) {
         const items = response.items;
 
-        if (items.length === 0) {
-          var text = req.body.text.replace(' ', '+'); //replace spaces with pluses to form part of the google url
+        if (items.length > 100) {//slack does not allow more than 100 attachments
+          items = items.splice(100);
+        }
+
+        if (items.length === 0) { //if no result from Stack Overflow, suggest Google
+          var text = req.body.text.replace(new RegExp(' ', 'g'), '+'); //replace spaces with pluses to form part of the google url
           var googleLink = 'https://www.google.com/search?q=' + text;
           
           attachments = [{
@@ -39,18 +43,16 @@ app.post('/', (req, res) => {
             text: googleLink
           }];
         }
-        else if (items.length > 100) {//slack does not allow more than 100 attachments
-          items = items.splice(100);
+        else {
+          attachments = items.map((item) => {
+            return {
+              color: 'good',
+              title: item.title,
+              title_link: item.link,
+              text: item.link
+            };
+          });
         }
-
-        attachments = items.map((item) => {
-          return {
-            color: 'good',
-            title: item.title,
-            title_link: item.link,
-            text: item.link
-          };
-        });
       }
       
       request({
