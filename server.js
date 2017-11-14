@@ -22,7 +22,7 @@ app.post('/', (req, res) => {
         }];
       }
       else if (response.items) {
-        const items = response.items;
+        let items = response.items;
 
         if (items.length > 100) {//slack does not allow more than 100 attachments
           items = items.splice(100);
