@@ -2,7 +2,7 @@
 
 A very simple Slack integration that allows you to search Stack Overflow right from within Slack.
 
-This project makes use of the [Stack Exchange](http://api.stackexchange.com/docs) to fetch the best responses for users' requests.
+This project makes use of the [Stack Exchange API](http://api.stackexchange.com/docs) to fetch the best responses for users' requests.
 
 ### Getting it up and running
 
