@@ -35,7 +35,7 @@ Once your server is up and running users can then begin interacting with your sl
 
 ### Possible error on Slack
 
-Once in a while (actually quite often) youn may see this on Slack:  
+If you are hosting this server on Heroku then once in a while (actually quite often) youn may see this on Slack:  
 ![Slack timeout error](https://s3.us-east-2.amazonaws.com/franklin-chieze/slack-timeout-error.png)
 
 The above error simply means the server is asleep on Heroku. It takes a few seconds for Heroku to wake the app up. Unfortunately Slack isn't that patient, and throws the error above. As soon as the app comes up, it processes your request, and normal operation resumes.
