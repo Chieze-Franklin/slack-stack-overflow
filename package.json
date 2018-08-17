@@ -1,7 +1,7 @@
 {
-  "name": "slash-hlp",
+  "name": "stack-on-slack",
   "version": "1.0.0",
-  "description": "Slack command /hlp",
+  "description": "Slack command /so",
   "main": "index.js",
   "scripts": {
     "start": "node server",
