@@ -69,6 +69,8 @@ app.post('/', (req, res) => {
         console.log(err)
       })
     })
+  } else {
+    res.status(403).send('This Slack Client is forbidden from accessing this endpoint.');
   }
 })
 
